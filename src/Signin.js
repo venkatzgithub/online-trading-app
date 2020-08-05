@@ -12,6 +12,9 @@ class Signin extends React.Component {
   onEmailChange = (event) => {
     this.setState({signInEmail: event.target.value})
     console.log(event.target.value)
+
+
+    
   }
 
   onPasswordChange = (event) => {
@@ -20,7 +23,7 @@ class Signin extends React.Component {
   }
 
   onSubmitSignIn = () => {
-    fetch('https://guarded-gorge-19251.herokuapp.com/signin', {
+    fetch('http://online-trading-app-backend.herokuapp.com/signin', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -28,10 +31,11 @@ class Signin extends React.Component {
         password: this.state.signInPassword
       })
     })
-    .then(response => response.json())
-      .then(user => { 
+    .then(response => response.json()
+    )
+      .then(user => { console.log(user)
         if (user.id) {
-          this.props.loadUser(user)
+      
           this.props.onRouteChange('home');
         }
       })
